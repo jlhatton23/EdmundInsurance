@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insurance Solution Center — UI Mockups</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #090b10;
+    --bg-card: #0f1219;
+    --bg-card-hover: #151a24;
+    --bg-input: #151a24;
+    --border: #1e2535;
+    --border-focus: #0ea5e9;
+    --text: #f0f2f5;
+    --text-muted: #8892a4;
+    --text-dim: #4a5568;
+    --accent: #0ea5e9;
+    --accent-hover: #38bdf8;
+    --accent-glow: rgba(14, 165, 233, 0.12);
+    --success: #22c55e;
+    --success-glow: rgba(34, 197, 94, 0.12);
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --gold: #eab308;
+    --gradient: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #14b8a6 100%);
+    --gradient-warm: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --radius-lg: 16px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.6);
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  /* ===== PHONE FRAME ===== */
+  .mockup-wrapper {
+    max-width: 430px;
+    margin: 40px auto;
+    background: var(--bg);
+    border-radius: 40px;
+    border: 3px solid #2a2a3a;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .mockup-wrapper::before {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 28px;
+    background: #111;
+    border-radius: 0 0 14px 14px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+  .screen { min-height: 800px; overflow-y: auto; padding-bottom: 20px; }
+
+  /* ===== SECTION LABELS ===== */
+  .mockup-divider {
+    text-align: center;
+    padding: 60px 20px 20px;
+    max-width: 430px;
+    margin: 0 auto;
+  }
+  .mockup-divider h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .mockup-divider p { font-size: 13px; color: var(--text-dim); }
+
+  .page-title {
+    text-align: center;
+    padding: 60px 20px 40px;
+  }
+  .page-title h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+  .page-title h1 .g { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .page-title p { color: var(--text-muted); font-size: 15px; }
+
+  /* ===== NAV ===== */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(9,11,16,0.95);
+    backdrop-filter: blur(20px);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-shield {
+    width: 28px;
+    height: 28px;
+    background: var(--gradient);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .nav-name {
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .nav-name span { color: var(--accent); }
+  .nav-actions { display: flex; gap: 6px; }
+  .nav-btn {
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font);
+  }
+  .nav-btn-ghost { background: transparent; color: var(--text-muted); }
+  .nav-btn-primary { background: var(--accent); color: white; }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 40px 22px 28px;
+    text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(14,165,233,0.25);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-hover);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .hero h1 .g { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 340px;
+    margin: 0 auto 24px;
+    line-height: 1.5;
+  }
+
+  /* ===== SEARCH CARD ===== */
+  .search-card {
+    margin: 0 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+  .search-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .insurance-types {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .ins-type {
+    text-align: center;
+    padding: 12px 4px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .ins-type:hover { border-color: var(--accent); }
+  .ins-type.active {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+  .ins-type-icon { font-size: 22px; margin-bottom: 4px; }
+  .ins-type-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .ins-type.active .ins-type-label { color: var(--accent-hover); }
+
+  .field { margin-bottom: 12px; }
+  .field label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 5px;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: 11px 13px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 14px;
+    font-family: var(--font);
+    outline: none;
+  }
+  .field input:focus { border-color: var(--border-focus); }
+  .field input::placeholder { color: var(--text-dim); }
+  .field-row { display: flex; gap: 10px; }
+  .field-row .field { flex: 1; }
+
+  .btn-compare {
+    width: 100%;
+    padding: 14px;
+    background: var(--gradient);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: var(--font);
+    cursor: pointer;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== TRUST BADGES ===== */
+  .trust-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px 16px;
+  }
+  .trust-item {
+    text-align: center;
+  }
+  .trust-icon { font-size: 20px; margin-bottom: 4px; }
+  .trust-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-section { padding: 20px 18px; }
+  .how-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .how-step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .how-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    border: 1px solid rgba(14,165,233,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .how-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .how-text p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+  /* ===== CARRIERS ROW ===== */
+  .carriers-section {
+    padding: 20px 18px;
+    border-top: 1px solid var(--border);
+  }
+  .carriers-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .carriers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .carrier-badge {
+    padding: 6px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  /* ================================================================ */
+  /* SCREEN 2: COMPARISON RESULTS                                      */
+  /* ================================================================ */
+  .results-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .results-back { font-size: 13px; color: var(--accent); cursor: pointer; font-weight: 500; }
+  .results-title { font-size: 18px; font-weight: 700; margin-top: 4px; }
+  .results-meta { font-size: 12px; color: var(--text-muted); }
+
+  .results-sort {
+    display: flex;
+    gap: 6px;
+    padding: 10px 16px;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .sort-chip {
+    padding: 6px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .sort-chip.active {
+    background: var(--accent-glow);
+    border-color: var(--accent);
+    color: var(--accent-hover);
+  }
+
+  /* ===== QUOTE CARD ===== */
+  .quote-card {
+    margin: 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .quote-card:hover { border-color: var(--accent); }
+  .quote-card.recommended {
+    border-color: rgba(34,197,94,0.4);
+  }
+  .quote-rec-banner {
+    background: var(--success-glow);
+    padding: 5px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .quote-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+  }
+  .quote-carrier {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .quote-logo {
+    width: 40px;
+    height: 40px;
+    background: var(--bg);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 1px solid var(--border);
+  }
+  .quote-carrier-name { font-size: 14px; font-weight: 600; }
+  .quote-carrier-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--gold);
+    margin-top: 1px;
+  }
+  .quote-carrier-rating span { color: var(--text-dim); }
+  .quote-price { text-align: right; }
+  .quote-amount {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .quote-amount sup {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    vertical-align: super;
+  }
+  .quote-period {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .quote-coverage {
+    padding: 0 16px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cov-tag {
+    padding: 4px 10px;
+    background: var(--bg);
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .cov-tag.highlight {
+    background: var(--accent-glow);
+    color: var(--accent-hover);
+  }
+
+  .quote-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .quote-savings {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--success);
+  }
+  .btn-quote {
+    padding: 8px 18px;
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font);
+  }
+  .btn-quote-outline {
+    padding: 8px 18px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font);
+  }
+  .quote-compare-bar {
+    margin: 12px 14px;
+    padding: 12px 16px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(14,165,233,0.25);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .compare-bar-text {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .compare-bar-text span { color: var(--text-muted); font-size: 11px; }
+
+  /* ================================================================ */
+  /* SCREEN 3: CARRIER DETAIL                                          */
+  /* ================================================================ */
+  .detail-hero {
+    padding: 20px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .detail-logo {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-card);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .detail-info { flex: 1; }
+  .detail-name { font-size: 20px; font-weight: 700; }
+  .detail-tagline { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .detail-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .detail-stars { color: var(--gold); font-size: 13px; }
+  .detail-rating-text { font-size: 12px; color: var(--text-muted); }
+
+  .detail-price-card {
+    margin: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    text-align: center;
+  }
+  .detail-price-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .detail-price-amount {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 6px 0 2px;
+  }
+  .detail-price-amount sup { font-size: 16px; font-weight: 500; color: var(--text-muted); vertical-align: super; }
+  .detail-price-period { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+  .btn-get-quote {
+    width: 100%;
+    padding: 14px;
+    background: var(--gradient);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: var(--font);
+    cursor: pointer;
+  }
+  .btn-get-quote-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  .detail-section {
+    padding: 16px 18px 0;
+  }
+  .detail-section-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .coverage-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .coverage-item:last-child { border-bottom: none; }
+  .cov-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cov-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--success-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--success);
+  }
+  .cov-name { font-size: 13px; font-weight: 500; }
+  .cov-value { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+
+  .pros-cons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .pros, .cons {
+    flex: 1;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+  }
+  .pros-title, .cons-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .pros-title { color: var(--success); }
+  .cons-title { color: var(--warning); }
+  .pros li, .cons li {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    list-style: none;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .pros li::before { content: '+'; position: absolute; left: 0; color: var(--success); font-weight: 700; }
+  .cons li::before { content: '−'; position: absolute; left: 0; color: var(--warning); font-weight: 700; }
+
+  .detail-disclaimer {
+    margin: 14px 16px;
+    padding: 12px 14px;
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.15);
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== PAGE TITLE ========== -->
+<div class="page-title">
+  <h1><span class="g">Insurance Solution Center</span></h1>
+  <p>UI Mockups — 3 key screens, mobile-first</p>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- SCREEN 1: LANDING PAGE                                            -->
+<!-- ================================================================ -->
+<div class="mockup-divider">
+  <h2>Screen 1</h2>
+  <p>Landing Page — Search by insurance type</p>
+</div>
+
+<div class="mockup-wrapper">
+  <div class="screen">
+    <div class="nav">
+      <div class="nav-brand">
+        <div class="nav-shield">🛡️</div>
+        <div class="nav-name">Insurance <span>Solution Center</span></div>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-btn nav-btn-primary">Get Quotes</button>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-badge">🔒 100% Free · No Spam · No Obligations</div>
+      <h1>Compare rates.<br><span class="g">Save thousands.</span></h1>
+      <p>Search once, see quotes from top carriers side by side. Click through to buy direct — we never sell your data.</p>
+    </div>
+
+    <div class="search-card">
+      <div class="search-card-title">What type of insurance?</div>
+      <div class="insurance-types">
+        <div class="ins-type active">
+          <div class="ins-type-icon">🚗</div>
+          <div class="ins-type-label">Auto</div>
+        </div>
+        <div class="ins-type">
+          <div class="ins-type-icon">🏠</div>
+          <div class="ins-type-label">Home</div>
+        </div>
+        <div class="ins-type">
+          <div class="ins-type-icon">❤️</div>
+          <div class="ins-type-label">Life</div>
+        </div>
+        <div class="ins-type">
+          <div class="ins-type-icon">🏢</div>
+          <div class="ins-type-label">Business</div>
+        </div>
+        <div class="ins-type">
+          <div class="ins-type-icon">🏥</div>
+          <div class="ins-type-label">Health</div>
+        </div>
+        <div class="ins-type">
+          <div class="ins-type-icon">🐕</div>
+          <div class="ins-type-label">Pet</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Zip Code</label>
+        <input type="text" placeholder="Enter your zip code" value="95350">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Age</label>
+          <input type="text" placeholder="Age" value="34">
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <input type="text" value="Male">
+        </div>
+      </div>
+      <div class="field">
+        <label>Vehicle Year / Make / Model</label>
+        <input type="text" placeholder="e.g. 2022 Toyota Camry" value="2021 Ford F-150">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Current Insurer</label>
+          <input type="text" placeholder="Optional" value="State Farm">
+        </div>
+        <div class="field">
+          <label>Coverage Level</label>
+          <input type="text" value="Full Coverage">
+        </div>
+      </div>
+      <button class="btn-compare">🔍 Compare Rates Now</button>
+      <div style="text-align: center; margin-top: 12px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+        🔒 <strong style="color: var(--text);">We never sell your information. Ever.</strong><br>
+        <span style="font-size: 11px; color: var(--text-dim);">No spam calls. No lead selling. Your data stays here and is only used to show you quotes.</span>
+      </div>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-label">256-bit SSL</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🚫</div>
+        <div class="trust-label">No Data Sales</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <div class="trust-label">Instant Quotes</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">💯</div>
+        <div class="trust-label">100% Free</div>
+      </div>
+    </div>
+
+    <div class="how-section">
+      <div class="how-title">How it works</div>
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-text">
+          <h4>Tell us what you need</h4>
+          <p>Pick your insurance type and answer a few quick questions. Takes under 2 minutes.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-text">
+          <h4>Compare carriers side by side</h4>
+          <p>See rates, coverage, ratings, and discounts from 40+ top insurance companies.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-text">
+          <h4>Buy direct from the carrier</h4>
+          <p>Click through to the carrier's website to purchase. We never handle payments or policies.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carriers-section">
+      <div class="carriers-title">40+ Carriers Compared</div>
+      <div class="carriers-grid">
+        <div class="carrier-badge">State Farm</div>
+        <div class="carrier-badge">GEICO</div>
+        <div class="carrier-badge">Progressive</div>
+        <div class="carrier-badge">Allstate</div>
+        <div class="carrier-badge">USAA</div>
+        <div class="carrier-badge">Liberty Mutual</div>
+        <div class="carrier-badge">Nationwide</div>
+        <div class="carrier-badge">Farmers</div>
+        <div class="carrier-badge">Travelers</div>
+        <div class="carrier-badge">American Family</div>
+        <div class="carrier-badge">+30 more</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- SCREEN 2: COMPARISON RESULTS                                      -->
+<!-- ================================================================ -->
+<div class="mockup-divider">
+  <h2>Screen 2</h2>
+  <p>Comparison Results — Side-by-side quotes</p>
+</div>
+
+<div class="mockup-wrapper">
+  <div class="screen">
+    <div class="results-header">
+      <span class="results-back">← New Search</span>
+      <div class="results-title">Auto Insurance Quotes</div>
+      <div class="results-meta">2021 Ford F-150 · 95350 · Full Coverage · 7 carriers found</div>
+    </div>
+
+    <div class="results-sort">
+      <div class="sort-chip active">Lowest Price</div>
+      <div class="sort-chip">Best Rated</div>
+      <div class="sort-chip">Most Coverage</div>
+      <div class="sort-chip">Best Value</div>
+    </div>
+
+    <!-- RECOMMENDED -->
+    <div class="quote-card recommended">
+      <div class="quote-rec-banner">⭐ Best Match — Recommended for You</div>
+      <div class="quote-top">
+        <div class="quote-carrier">
+          <div class="quote-logo">🦎</div>
+          <div>
+            <div class="quote-carrier-name">GEICO</div>
+            <div class="quote-carrier-rating">★★★★½ <span>4.5 · 12K reviews</span></div>
+          </div>
+        </div>
+        <div class="quote-price">
+          <div class="quote-amount">$127<sup>/mo</sup></div>
+          <div class="quote-period">$1,524 / year</div>
+        </div>
+      </div>
+      <div class="quote-coverage">
+        <div class="cov-tag highlight">$500 deductible</div>
+        <div class="cov-tag">100/300/100</div>
+        <div class="cov-tag">Roadside assist</div>
+        <div class="cov-tag highlight">Multi-car discount</div>
+      </div>
+      <div class="quote-bottom">
+        <div class="quote-savings">💰 Save $468/yr vs State Farm</div>
+        <button class="btn-quote">Get Quote →</button>
+      </div>
+    </div>
+
+    <!-- QUOTE 2 -->
+    <div class="quote-card">
+      <div class="quote-top">
+        <div class="quote-carrier">
+          <div class="quote-logo">📊</div>
+          <div>
+            <div class="quote-carrier-name">Progressive</div>
+            <div class="quote-carrier-rating">★★★★ <span>4.2 · 9.4K reviews</span></div>
+          </div>
+        </div>
+        <div class="quote-price">
+          <div class="quote-amount">$134<sup>/mo</sup></div>
+          <div class="quote-period">$1,608 / year</div>
+        </div>
+      </div>
+      <div class="quote-coverage">
+        <div class="cov-tag">$500 deductible</div>
+        <div class="cov-tag">100/300/100</div>
+        <div class="cov-tag highlight">Snapshot® discount</div>
+        <div class="cov-tag">Pet injury coverage</div>
+      </div>
+      <div class="quote-bottom">
+        <div class="quote-savings">💰 Save $384/yr vs State Farm</div>
+        <button class="btn-quote">Get Quote →</button>
+      </div>
+    </div>
+
+    <!-- QUOTE 3 -->
+    <div class="quote-card">
+      <div class="quote-top">
+        <div class="quote-carrier">
+          <div class="quote-logo">🏔️</div>
+          <div>
+            <div class="quote-carrier-name">Liberty Mutual</div>
+            <div class="quote-carrier-rating">★★★★ <span>4.0 · 7.1K reviews</span></div>
+          </div>
+        </div>
+        <div class="quote-price">
+          <div class="quote-amount">$142<sup>/mo</sup></div>
+          <div class="quote-period">$1,704 / year</div>
+        </div>
+      </div>
+      <div class="quote-coverage">
+        <div class="cov-tag">$500 deductible</div>
+        <div class="cov-tag">100/300/100</div>
+        <div class="cov-tag highlight">New car replacement</div>
+        <div class="cov-tag">Accident forgiveness</div>
+      </div>
+      <div class="quote-bottom">
+        <div class="quote-savings">💰 Save $288/yr vs State Farm</div>
+        <button class="btn-quote-outline">Get Quote →</button>
+      </div>
+    </div>
+
+    <!-- QUOTE 4 -->
+    <div class="quote-card">
+      <div class="quote-top">
+        <div class="quote-carrier">
+          <div class="quote-logo">🤝</div>
+          <div>
+            <div class="quote-carrier-name">Allstate</div>
+            <div class="quote-carrier-rating">★★★★ <span>4.1 · 8.2K reviews</span></div>
+          </div>
+        </div>
+        <div class="quote-price">
+          <div class="quote-amount">$156<sup>/mo</sup></div>
+          <div class="quote-period">$1,872 / year</div>
+        </div>
+      </div>
+      <div class="quote-coverage">
+        <div class="cov-tag">$500 deductible</div>
+        <div class="cov-tag">100/300/100</div>
+        <div class="cov-tag highlight">Drivewise® savings</div>
+        <div class="cov-tag">Claim-free bonus</div>
+      </div>
+      <div class="quote-bottom">
+        <div class="quote-savings">💰 Save $120/yr vs State Farm</div>
+        <button class="btn-quote-outline">Get Quote →</button>
+      </div>
+    </div>
+
+    <!-- CURRENT CARRIER -->
+    <div class="quote-card" style="border-color: rgba(245,158,11,0.3);">
+      <div style="background: rgba(245,158,11,0.08); padding: 5px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--warning);">
+        ⚠️ Your Current Carrier
+      </div>
+      <div class="quote-top">
+        <div class="quote-carrier">
+          <div class="quote-logo">🔴</div>
+          <div>
+            <div class="quote-carrier-name">State Farm</div>
+            <div class="quote-carrier-rating">★★★★ <span>4.3 · 15K reviews</span></div>
+          </div>
+        </div>
+        <div class="quote-price">
+          <div class="quote-amount" style="color: var(--warning);">$166<sup>/mo</sup></div>
+          <div class="quote-period">$1,992 / year</div>
+        </div>
+      </div>
+      <div class="quote-coverage">
+        <div class="cov-tag">$500 deductible</div>
+        <div class="cov-tag">100/300/100</div>
+        <div class="cov-tag">Drive Safe & Save</div>
+      </div>
+      <div class="quote-bottom">
+        <div style="font-size: 11px; color: var(--danger); font-weight: 600;">You're overpaying ~$468/yr*</div>
+        <button class="btn-quote-outline" style="border-color: var(--text-dim); color: var(--text-dim);">Keep Plan</button>
+      </div>
+    </div>
+
+    <div style="padding: 4px 18px 12px; font-size: 10px; color: var(--text-dim); line-height: 1.5;">
+      *Savings estimates are based on comparable driver profiles in your area. Your actual rate will be determined by the carrier based on your full application. We do not guarantee specific savings amounts.
+    </div>
+
+    <div class="quote-compare-bar">
+      <div>
+        <div class="compare-bar-text">Need help deciding?</div>
+        <div style="font-size: 11px; color: var(--text-muted);">Compare any 2 carriers side by side</div>
+      </div>
+      <button class="btn-quote">Compare</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- SCREEN 3: CARRIER DETAIL                                          -->
+<!-- ================================================================ -->
+<div class="mockup-divider">
+  <h2>Screen 3</h2>
+  <p>Carrier Detail — Full breakdown before clicking out</p>
+</div>
+
+<div class="mockup-wrapper">
+  <div class="screen">
+    <div style="padding: 14px 18px; border-bottom: 1px solid var(--border);">
+      <span class="results-back">← Back to Results</span>
+    </div>
+
+    <div class="detail-hero">
+      <div class="detail-logo">🦎</div>
+      <div class="detail-info">
+        <div class="detail-name">GEICO</div>
+        <div class="detail-tagline">Government Employees Insurance Company</div>
+        <div class="detail-rating">
+          <span class="detail-stars">★★★★½</span>
+          <span class="detail-rating-text">4.5 / 5 · 12,340 reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-price-card">
+      <div class="detail-price-label">Your Estimated Rate</div>
+      <div class="detail-price-amount">$127<sup>/mo</sup></div>
+      <div class="detail-price-period">$1,524 / year · Full Coverage · 2021 Ford F-150</div>
+      <button class="btn-get-quote">Get Quote on GEICO.com →</button>
+      <div class="btn-get-quote-sub">You'll be redirected to GEICO's website to finalize</div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Coverage Included</div>
+      <div class="coverage-item">
+        <div class="cov-left">
+          <div class="cov-check">✓</div>
+          <div class="cov-name">Bodily Injury</div>
+        </div>
+        <div class="cov-value">$100K / $300K</div>
+      </div>
+      <div class="coverage-item">
+        <div class="cov-left">
+          <div class="cov-check">✓</div>
+          <div class="cov-name">Property Damage</div>
+        </div>
+        <div class="cov-value">$100,000</div>
+      </div>
+      <div class="coverage-item">
+        <div class="cov-left">
+          <div class="cov-check">✓</div>
+          <div class="cov-name">Collision</div>
+        </div>
+        <div class="cov-value">$500 deductible</div>
+      </div>
+      <div class="coverage-item">
+        <div class="cov-left">
+          <div class="cov-check">✓</div>
+          <div class="cov-name">Comprehensive</div>
+        </div>
+        <div class="cov-value">$500 deductible</div>
+      </div>
+      <div class="coverage-item">
+        <div class="cov-left">
+          <div class="cov-check">✓</div>
+          <div class="cov-name">Uninsured Motorist</div>
+        </div>
+        <div class="cov-value">$100K / $300K</div>
+      </div>
+      <div class="coverage-item">
+        <div class="cov-left">
+          <div class="cov-check">✓</div>
+          <div class="cov-name">Roadside Assistance</div>
+        </div>
+        <div class="cov-value">Included</div>
+      </div>
+      <div class="coverage-item">
+        <div class="cov-left">
+          <div class="cov-check">✓</div>
+          <div class="cov-name">Rental Reimbursement</div>
+        </div>
+        <div class="cov-value">$50/day</div>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Available Discounts</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;">
+        <div class="cov-tag highlight">🏷️ Multi-car: -15%</div>
+        <div class="cov-tag highlight">🎓 Good student: -12%</div>
+        <div class="cov-tag highlight">🏠 Homeowner: -8%</div>
+        <div class="cov-tag highlight">🪖 Military: -15%</div>
+        <div class="cov-tag highlight">📱 Autopay: -5%</div>
+        <div class="cov-tag highlight">💼 Federal employee: -8%</div>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Pros & Cons</div>
+      <div class="pros-cons">
+        <div class="pros">
+          <div class="pros-title">✅ Pros</div>
+          <ul>
+            <li>Lowest rate found</li>
+            <li>Excellent mobile app</li>
+            <li>24/7 claims filing</li>
+            <li>Tons of discounts</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <div class="cons-title">⚠️ Cons</div>
+          <ul>
+            <li>No local agents</li>
+            <li>Claims satisfaction avg</li>
+            <li>Rate hikes after claims</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Savings vs Your Current Plan</div>
+      <div style="background: var(--success-glow); border: 1px solid rgba(34,197,94,0.2); border-radius: var(--radius-sm); padding: 16px; text-align: center; margin-bottom: 14px;">
+        <div style="font-size: 28px; font-weight: 800; color: var(--success);">$468</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">estimated savings per year vs State Farm</div>
+        <div style="display: flex; justify-content: center; gap: 24px; margin-top: 12px;">
+          <div>
+            <div style="font-size: 14px; font-weight: 600; color: var(--danger); text-decoration: line-through;">$166/mo</div>
+            <div style="font-size: 10px; color: var(--text-dim);">State Farm</div>
+          </div>
+          <div style="font-size: 18px; color: var(--text-dim); align-self: center;">→</div>
+          <div>
+            <div style="font-size: 14px; font-weight: 600; color: var(--success);">$127/mo</div>
+            <div style="font-size: 10px; color: var(--text-dim);">GEICO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 0 16px 8px;">
+      <button class="btn-get-quote" style="width: 100%;">Get Quote on GEICO.com →</button>
+    </div>
+
+    <div class="detail-disclaimer">
+      ⚠️ Rates shown are estimates based on information you provided. Actual rates may vary. Insurance Solution Center is a comparison service — we do not sell, bind, or administer insurance policies. You will complete your purchase directly with the carrier.
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 60px 20px; color: var(--text-dim); font-size: 13px;">
+  <p>Mockups by Edmund for Jason · insurancesolutioncenter.com</p>
+  <p style="margin-top: 4px;">Mobile-first · Dark theme · Affiliate comparison model</p>
+</div>
+
+</body>
+</html>
