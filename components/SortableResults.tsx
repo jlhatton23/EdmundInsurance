@@ -144,7 +144,27 @@ export default function SortableResults({ carriers, currentCarrier, searchParams
                   {carrier.emoji}
                 </div>
                 <div>
-                  <div style={{ fontSize: '14px', fontWeight: 600 }}>{carrier.name}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                    <span style={{ fontSize: '14px', fontWeight: 600 }}>{carrier.name}</span>
+                    {carrier.badge && (
+                      <span
+                        style={{
+                          padding: '1px 6px',
+                          background: carrier.badge.includes('Military') ? 'rgba(14,165,233,0.12)' : 'rgba(245,158,11,0.12)',
+                          border: `1px solid ${carrier.badge.includes('Military') ? 'rgba(14,165,233,0.3)' : 'rgba(245,158,11,0.3)'}`,
+                          borderRadius: '8px',
+                          fontSize: '9px',
+                          fontWeight: 700,
+                          color: carrier.badge.includes('Military') ? 'var(--accent-hover)' : 'var(--warning)',
+                          textTransform: 'uppercase' as const,
+                          letterSpacing: '0.2px',
+                          whiteSpace: 'nowrap' as const,
+                        }}
+                      >
+                        {carrier.badge.includes('Military') ? '🎖️' : '🔑'} {carrier.badge}
+                      </span>
+                    )}
+                  </div>
                   <div
                     style={{
                       display: 'flex',

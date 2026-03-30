@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Nav from '@/components/Nav'
-import { getCarrierBySlug, carriers, renderStars, CURRENT_CARRIER_MONTHLY } from '@/lib/data'
+import { getCarrierBySlug, carriers, renderStars, CURRENT_CARRIER_MONTHLY, CA_AVG_YEARLY, CA_AVG_MONTHLY } from '@/lib/data'
 
 interface PageProps {
   params: { slug: string }
@@ -40,6 +40,10 @@ export default function CarrierDetailPage({ params, searchParams }: PageProps) {
       Object.entries(searchParams).map(([k, v]) => [k, Array.isArray(v) ? v[0] : (v ?? '')])
     )
   ).toString()}`
+
+  // Show CA note if user is in a CA zip code (95xxx)
+  const isCA = zip.startsWith('95') || zip.startsWith('90') || zip.startsWith('91') ||
+    zip.startsWith('92') || zip.startsWith('93') || zip.startsWith('94')
 
   return (
     <main>
@@ -82,12 +86,31 @@ export default function CarrierDetailPage({ params, searchParams }: PageProps) {
           {carrier.emoji}
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: '20px', fontWeight: 700 }}>{carrier.name}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <div style={{ fontSize: '20px', fontWeight: 700 }}>{carrier.name}</div>
+            {carrier.badge && (
+              <span
+                style={{
+                  padding: '2px 8px',
+                  background: carrier.badge.includes('Military') ? 'rgba(14,165,233,0.12)' : 'rgba(245,158,11,0.12)',
+                  border: `1px solid ${carrier.badge.includes('Military') ? 'rgba(14,165,233,0.35)' : 'rgba(245,158,11,0.35)'}`,
+                  borderRadius: '10px',
+                  fontSize: '10px',
+                  fontWeight: 700,
+                  color: carrier.badge.includes('Military') ? 'var(--accent-hover)' : 'var(--warning)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.3px',
+                }}
+              >
+                {carrier.badge.includes('Military') ? '🎖️' : '🔑'} {carrier.badge}
+              </span>
+            )}
+          </div>
           <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '2px' }}>{carrier.tagline}</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '6px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
             <span style={{ color: 'var(--gold)', fontSize: '13px' }}>{renderStars(carrier.rating)}</span>
             <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-              {carrier.rating} / 5 · {carrier.reviewCount} reviews
+              {carrier.rating}/5 NerdWallet · AM Best: {carrier.amBestRating}
             </span>
           </div>
         </div>
@@ -112,7 +135,7 @@ export default function CarrierDetailPage({ params, searchParams }: PageProps) {
             letterSpacing: '1px',
           }}
         >
-          Your Estimated Rate
+          National Avg Full Coverage Rate
         </div>
         <div style={{ fontSize: '36px', fontWeight: 800, margin: '6px 0 2px' }}>
           ${carrier.monthlyRate}
@@ -122,20 +145,39 @@ export default function CarrierDetailPage({ params, searchParams }: PageProps) {
             /mo
           </sup>
         </div>
-        <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '14px' }}>
+        <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '8px' }}>
           ${carrier.yearlyRate.toLocaleString()} / year · {coverage} · {vehicle}
         </div>
+
+        {/* CA rate note */}
+        {isCA && (
+          <div
+            style={{
+              padding: '8px 12px',
+              background: 'rgba(14,165,233,0.06)',
+              border: '1px solid rgba(14,165,233,0.2)',
+              borderRadius: '8px',
+              fontSize: '11px',
+              color: 'var(--text-muted)',
+              marginBottom: '14px',
+              lineHeight: 1.4,
+            }}
+          >
+            📍 <strong>California avg:</strong> ${CA_AVG_MONTHLY}/mo (${CA_AVG_YEARLY.toLocaleString()}/yr) for full coverage — your rate may differ based on your profile.
+          </div>
+        )}
+
         <a
-          href={carrier.website}
+          href={carrier.quoteUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary"
           style={{ display: 'block', textDecoration: 'none', textAlign: 'center' }}
         >
-          Get Quote on {carrier.name}.com →
+          Get My Rate on {carrier.name}.com →
         </a>
         <div style={{ fontSize: '11px', color: 'var(--text-dim)', marginTop: '8px' }}>
-          You&apos;ll be redirected to {carrier.name}&apos;s website to finalize
+          You&apos;ll be redirected to {carrier.name}&apos;s official website to get your personalized quote
         </div>
       </div>
 
@@ -355,13 +397,13 @@ export default function CarrierDetailPage({ params, searchParams }: PageProps) {
       {/* Bottom CTA */}
       <div style={{ padding: '0 16px 16px' }}>
         <a
-          href={carrier.website}
+          href={carrier.quoteUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary"
           style={{ display: 'block', textDecoration: 'none', textAlign: 'center' }}
         >
-          Get Quote on {carrier.name}.com →
+          Get My Rate on {carrier.name}.com →
         </a>
       </div>
 
@@ -378,9 +420,10 @@ export default function CarrierDetailPage({ params, searchParams }: PageProps) {
           lineHeight: 1.5,
         }}
       >
-        ⚠️ Rates shown are estimates based on information you provided. Actual rates may vary. Insurance Solution
-        Center is a comparison service — we do not sell, bind, or administer insurance policies. You will complete
-        your purchase directly with the carrier.
+        ⚠️ Rates shown are national averages based on industry data (NerdWallet/Bankrate 2024). Actual rates may vary
+        based on your driver profile, vehicle, location, and coverage selections. Insurance Solution Center is a
+        comparison service — we do not sell, bind, or administer insurance policies. You will complete your purchase
+        directly with the carrier.
       </div>
     </main>
   )

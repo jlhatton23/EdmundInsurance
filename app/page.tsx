@@ -185,8 +185,8 @@ export default function HomePage() {
           }}
         >
           {[
-            'State Farm',
             'GEICO',
+            'State Farm',
             'Progressive',
             'Allstate',
             'USAA',
@@ -194,7 +194,7 @@ export default function HomePage() {
             'Nationwide',
             'Farmers',
             'Travelers',
-            'American Family',
+            'AAA',
             '+30 more',
           ].map((name) => (
             <div
